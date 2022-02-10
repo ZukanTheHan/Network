@@ -1,0 +1,37 @@
+# Ağımızdaki Cihazlar
+Uç cihazlardan bahsetmiştik. Ağda bulunan uç cihazlar birbirleriyle haberleşebilmesi için bir IP adresine ihtiyaç duyduğunu söylemiştik. Uç cihazların gösterimi aşağıdaki gibidir.
+![image](https://user-images.githubusercontent.com/70758694/153439199-c895ca37-cf8e-47f4-b7e9-dd1cd5dd4616.png)
+
+Uç cihazları ağa bağlayabilmemiz için ara cihazlara (intermediary devices) ihtiyaç duyarız. Bunlar aynı zamanda ağları birbirine bağlamak içinde kullanılır.  Ara cihazlar, verinin 
+hedef cihaza ulaşabilmesini sağlarlar.
+![image](https://user-images.githubusercontent.com/70758694/153440808-3dd51609-8728-4317-9151-058880036bde.png)
+
+Kısaca bu ara cihazlardan bahsetmek gerekirse:
+
+**Router** : Ağları birbirine bağlayan cihazdır.
+
+**Switch** : Aynı ağ içerisinde bulunan cihazların haberleşmesini sağlayan cihazdır.
+
+**Multilayer Switch** : İçerisinde hem router hemde switch bulunan cihazdır.
+
+**Firewall** : İçerisinde güvenlik katmanları bulunan router cihazdır.
+
+**Wireless Router** : Multilayer switch gibi çalışan cihazdır. Evde kullandığımız modemler örnek olarak verilebilir.
+
+## Ara Cihazlar
+Son kullanıcıları ağa bağlamak için kablolama yaparak switchlere bağlarız. Bunun için ethernet kablolarından yararlanırız. Uç cihazlarda bu kabloyu cihazın ethernet kartına bağlarız.
+Ethernet kartı bir NIC (Network Interface Card) kartıdır. İnternete bağlanacak her cihazda NIC kartı bulunur. Switchlere dönecek olursak uç cihazları birbine bağlamak için port
+dediğimiz bağlantı noktalarından yararlanırız.
+
+**NIC KARTI**
+![image](https://user-images.githubusercontent.com/70758694/153457569-e15eb71e-604d-46e3-b5bc-53a38ee43e1a.png)
+**SWITCH**
+![image](https://user-images.githubusercontent.com/70758694/153457451-bbf0ef39-72f6-44ac-9038-c2d8eff2ba28.png)
+
+Eğer kablosuz bir bağlantı söz konusu ise bunun için access point dediğimiz cihazlar kullanılır. Access pointler aracılığıyla havadan veri iletimi gerçekleşir. Wifi teknolojisini wifi
+bölümünde derinlemesine inceleyeceğiz. 
+Routerlar (yönlendirici) ağlar arası bağlantıyı sağlayan cihazlardır. 
+![image](https://user-images.githubusercontent.com/70758694/153460843-9f44ecc1-97f7-4867-b7ac-8ada9c35ba3b.png)
+
+Yukarıdaki ağ diyagramında ortadaki router cihazımız 4 farklı ağa hizmet vermektedir. Routerın her bir arayüzü farklı bir ağa hizmet verir. Company pc dosya sunucusuna erişmek için önce
+switch tarafından anahtarlanmalı daha sonra router tarafından yönlendirilmelidir.
