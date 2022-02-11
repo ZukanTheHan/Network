@@ -1,0 +1,49 @@
+# Haberleşmenin Temelleri
+Ağdaki cihazlar arasında iletişimin gerçekleşmesi için aygıtların "nasıl" iletişim kuracağını bilmesi gerekir. Tüm iletişim yöntemlerinde ortak olarak aşağıdaki üç unsur bulunur:
+
+- Mesaj kaynağı (gönderen) - Mesaj kaynakları, diğer kişilere veya cihazlara mesaj göndermesi gereken kişiler veya elektronik cihazlardır.
+- Mesaj Hedefi (alıcı) - Hedef mesajı alır ve yorumlar.
+- Kanal - Bu, mesajın kaynaktan hedefe seyahat ettiği yolu sağlayan medyadan oluşur.
+
+Mesajların tabi tutulduğu kurallara ise protokoller denir. Protokoller, kullanılan iletişim yöntemine göre özeldir. Telefon görüşmesiyle mektup göndermek arasındaki fark gibi.
+
+Kaynak ve hedefin belirlenmesine ek olarak, bilgisayar ve ağ protokolleri, bir mesajın bir ağ üzerinden nasıl iletildiğinin ayrıntılarını tanımlar. Ortak bilgisayar protokolleri 
+aşağıdaki gereksinimleri içerir:
+
+- Mesaj kodlama
+- Mesaj biçimlendirme ve kapsülleme
+- Mesaj boyutu
+- Mesaj zamanlaması
+- Mesaj teslim seçenekleri
+
+## Mesaj Kodlama
+Mesaj göndermenin ilk adımlarından biri kodlamadır. Kodlama, iletim için bilgiyi başka bir kabul edilebilir forma dönüştürme işlemidir. Kod çözme, bilgiyi yorumlamak için bu işlemi 
+tersine çevirir.
+
+Ağ üzerinden gönderilen mesajlar, önce gönderen ana bilgisayar tarafından bitlere dönüştürülür. Her bit, bakır teller, optik fiberlerdeki kızılötesi ışık veya kablosuz sistemler için 
+mikrodalgalar üzerindeki bir voltaj modeline kodlanmıştır. Hedef bilgisayar, mesajı yorumlamak için sinyalleri alır ve kodunu çözer.
+## Mesaj Biçimlendirme ve Kapsülleme
+Kaynaktan hedefe bir mesaj gönderildiğinde, belirli bir format veya yapı kullanmalıdır. Mesaj biçimleri, mesajın türüne ve mesajı iletmek için kullanılan kanala bağlıdır.
+
+Bir bilgisayar ağı üzerinden gönderilen bir mesaj, teslim edilmesi ve işlenmesi için belirli biçim kurallarına uyar. Şekilde, İnternet Protokolü sürüm 6 (IPv6) paketinin alanları, 
+paketin kaynağını ve hedefini tanımlar.
+
+![image](https://user-images.githubusercontent.com/70758694/153610155-d611ac63-2c38-4fd9-84a0-35792b0d4a15.png)
+## Mesaj Boyutu
+Çok büyük bir mesaj gönderilidiğinde mesajın küçük parçalara ya da çerçevelere (frame) bölünmesi gerekir. Gönderilen çerçeveler belli bir boyut aralığında olmalıdır. Her bir çerçeve
+orjinal mesaja ait bilgiyi içerir. Hedef bilgisayarlar parçalır alır ve birleştirip orjinal mesajı elde eder.
+
+## Mesaj Zamanlaması
+Ağ iletişiminde mesaj zamanlaması da çok önemlidir. Mesaj zamanlaması aşağıdakileri içerir:
+
+- Akış Kontrolü - Bu, veri aktarım hızını yönetme sürecidir. Akış kontrolü, ne kadar bilginin gönderilebileceğini ve iletilebileceği hızı tanımlar.
+- Yanıt Zaman Aşımı - Ağdaki bilgisayarlar, yanıtların ne kadar bekleneceğini ve bir yanıt zaman aşımı meydana geldiğinde hangi eylemin gerçekleştirileceğini belirten ağ protokollerini kullanır.
+- Erişim yöntemi - Bir cihaz kablosuz LAN üzerinden iletim yapmak istediğinde, WLAN ağ arayüz kartının (NIC) kablosuz ortamın müsait olup olmadığını belirlemesi gerekir.
+
+## Mesaj Teslim Seçenekleri
+Ağ üzerinde, bir cihaz sadece tek bir cihaza değil, belli bir grup cihaza veya ağda bulunan tüm cihazlara mesaj gönderebilir. 
+**Tek noktaya yayın (Unicast)** - Bilgi tek bir uç cihaza aktarılır. 
+**Çok noktaya yayın (Multicast)** - Bilgi bir veya daha fazla uç cihaza aktarılır.
+**Genel yayın (Broadcast)** - Bilgi tüm uç cihazlara aktarılır.
+
+**Not:** Ağ topolojilerinde genellikle ağ cihazları ve uç cihazlar düğüm (node) olarak adlandırılır.
