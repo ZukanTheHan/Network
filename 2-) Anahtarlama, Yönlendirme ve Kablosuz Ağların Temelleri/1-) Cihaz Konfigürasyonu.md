@@ -94,7 +94,14 @@ Cihazlarımıza güvenli bir şekilde uzaktan erişmek için telnet yerine ssh k
 
 ### SSH Konfigürasyonu
 
+![image](https://user-images.githubusercontent.com/70758694/179200437-73f92511-41d6-4e91-9df3-2265bc937ab3.png)
 
+1. Önce bir hostname ve domain-name ataması gerçekleştirdik.
+2. Kripto anahtarını RSA kullanarak oluşturduk. Daha önce oluşturulmuş bir tane anahtar var, tekrar oluşturma işlemi için sordu. İlk kez yapıldığında bu soruyu sormaz. Anahtar boyutunu minumum 1024 bit olarak ayarlamamız gerekir. Maksimum 2048 bit anahtar uzunluğu olabilir. 
+3. Oturumu açmak için bir kullanıcı ve parolaya ihtiyacımız var. Username ve secret komutları ile bunları da oluşturduk. Bu işlem kimlik doğrulama sunucuları ile de yapılabilir.
+4. Line vty 0-15 hatlarına geçtik ve burada sadece SSH protokolünü etkinleştirdik. Oluşturduğumuz kullanıcı adı ve parolanın etkinleştirilmesini sağladık.
+5. SSH versiyon 2'yi etkinleştirdik. Varsayılan olarak versiyon 1 ve versiyon 2 etkindir. Daha sıkı bir güvenlik versiyon 2'yi tercih etmeliyiz.
+  
 
 
 
