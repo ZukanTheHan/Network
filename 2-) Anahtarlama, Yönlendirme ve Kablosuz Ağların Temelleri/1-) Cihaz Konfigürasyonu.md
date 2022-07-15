@@ -114,6 +114,14 @@ Yukarıda görüldüğü gibi 4 yuvaya sahiptir. En soldaki yuvaya Serial High S
 
 Yukarıdaki gibi takılan bir başka modül konfigüre edilebilir. `description` komutuyla açıklama yazılabilir.
 
+### IPV4 Loopback Interface
+
+Router cihazlarında her zaman için etkin olacak fiziksel olmayan ve başka bir cihaza bağlanmayan arayüze Loopback Interface denir. Bu arayüze ip adresi atanarak cihaz hakkında sürekli olarak bilgi alınabilir. Örnek olarak 10.0.0.1, 20.0.0.1 ve 30.0.0.1 ip adreslerine sahip fiziksel arayüzlerden birini kullanarak router hakkında bilgi almak isteyelim. Fiziksel arayüzler oldukları için eğer kablolarda bir sorun çıkarsa cihaz çalışmaya devam etse bile bilgi alamayız. Buna çözüm olarak Loopback Interface kullanılabilir.
+
+![image](https://user-images.githubusercontent.com/70758694/179230350-c9409eac-8d84-476d-b7a7-80a484291802.png)
+
+Yukarıdaki komutları uygulayarak loopback interface özelliğini aktif edebiliriz. `no shutdown` komutuyla ayrıca etkin etmemize gerek yok.
+
 
 
 
