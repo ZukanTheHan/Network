@@ -64,6 +64,11 @@ Portlar full veya half dubleks olarak ayarlanabilir. Full dubleks aynı anda ver
 
 ![image](https://user-images.githubusercontent.com/70758694/179165720-be33cbc3-e1fc-4d4e-9cd1-9f3b0670df34.png)
 
+8-) Tüm arayüzlerin IP adresleri ve çalışma durumlarının özetini gösterir. --> `show ip interface brief` 
+
+![image](https://user-images.githubusercontent.com/70758694/179232498-eff9339e-7a75-4bc0-a15c-d1bc5abbb4f0.png)
+
+
 ### Ağ Erişim Katmanı Sorunları
 
 ![image](https://user-images.githubusercontent.com/70758694/179168849-1bab4ed6-10be-4f55-a0aa-fbb6416032b5.png)
@@ -121,6 +126,13 @@ Router cihazlarında her zaman için etkin olacak fiziksel olmayan ve başka bir
 ![image](https://user-images.githubusercontent.com/70758694/179230350-c9409eac-8d84-476d-b7a7-80a484291802.png)
 
 Yukarıdaki komutları uygulayarak loopback interface özelliğini aktif edebiliriz. `no shutdown` komutuyla ayrıca etkin etmemize gerek yok.
+
+**Not**: `show ipv6 interface [arayüz]` komutuyla ipv6 adresi atamalarını görebiliriz. Link-local adresi, bağlı olduğu multicast grupları ve global ipv6 adresini görebiliriz.
+
+![image](https://user-images.githubusercontent.com/70758694/179234672-a0ed1b7a-d4c0-46d0-899b-9f811a28267e.png)
+
+
+
 
 
 
