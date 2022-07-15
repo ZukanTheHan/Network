@@ -62,6 +62,37 @@ Portlar full veya half dubleks olarak ayarlanabilir. Full dubleks aynı anda ver
 
 7-) Bir arayüz hakkındaki IP bilgilerini gösterir --> `show ip interfaces [arayüz id]`
 
+![image](https://user-images.githubusercontent.com/70758694/179165720-be33cbc3-e1fc-4d4e-9cd1-9f3b0670df34.png)
+
+### Ağ Erişim Katmanı Sorunları
+
+![image](https://user-images.githubusercontent.com/70758694/179168849-1bab4ed6-10be-4f55-a0aa-fbb6416032b5.png)
+
+
+Ağ erişim katmanında çeşitli sorunlar yaşayabiliriz. Kullandığımız arayüzlerde herhangi bir problemin olup olmadığını kontrol edebilmek için switch cihazımız üzerinde `show interfaces [arayüz id]` komutunu çalıştırabiliriz. Switch cihazı hatalı verilerin istatistiğini tutar. İşaretli olan yerler bize hatalı verileri gösterir.
+
+**Input Errors**- Bir arayüze giren yani dışarıdan gelen paketlerdeki hataların toplamıdır. Runts, giants, no buffer, CRC, frame, overrun ve ignored counts verilerini içerir.
+
+**Runts**- Ethernet frame boyutu en küçük 64 byte olabilir. Bu değerden daha küçük veri gelirse runt olarak adlandırılır. 
+
+**Giants**- Ethernet frame boyutu en fazla 1518 byte olabilir. Bu değerden daha büyük veri gelirse giant olarak adlandırılır. Ethernet frame boyutu özel arttırılabilir ve bunlara jumbo frame denir.
+
+**CRC**- 2. katmanda pakete bir kuyruk eklenir. Buna FCS numarası denir. CRC algoritması ile hesaplanan bu değer eğer gelen frame ile eşleşmiyorsa CRC hatası artar. 
+
+**Output Errors**- Arayüzden çıkan paketlerdeki hatalara denir. 
+
+**Collisions**- Half dubleks çalışan cihazlarda meydana gelebilecek bir hatadır. Aynı anda veri gönderimi olursa çarpışma olur ve işlem tamamlanamaz. Günümüzde full dubleks çalışıldığı için bu hatayla karşılaşmayız.
+
+**Late Collisions**- Half dubleks çalışan cihazlarda çarpışma meydana geldiğinde bir JAM sinayli yollanır ve cihazlar tekrar gönderim sağlarlar. Eğer gönderim boyutu 512 bit değeri geçmişse gönderim sonunda çarpışma olduğu anlaşılır. 
+
+## Güvenli Uzaktan Erişim
+
+Cihazlarımıza güvenli bir şekilde uzaktan erişmek için telnet yerine ssh kullanmalıyız. Telnet, düz metin şeklinde veri gönderip aldığı için araya giren herhangi bir saldırgan kolaylıkla tüm oturumu dinleyebilir ve parolaları çalabilir. SSH ise tüm oturumu şifreler ve araya girmeye çalışan biri olsa bile sadece şifrelenmiş veri görecektir. Bazı cihazlar ssh desteklemeyebilir. Örnek olarak Cisco bazı ülkelere kriptoloji destekleyen cihazları satmaz. Cihazınızın ssh destekleyip desteklemediğini anlamak için `show version` komutunu kullanabiliriz. Eğer "k9" ibaresi geçiyorsa cihaz ssh destekliyor demektir.
+
+![image](https://user-images.githubusercontent.com/70758694/179174609-544bf16e-7c05-408a-8885-d63b0847f7ac.png)
+
+
+### SSH Konfigürasyonu
 
 
 
