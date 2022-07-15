@@ -98,10 +98,22 @@ Cihazlarımıza güvenli bir şekilde uzaktan erişmek için telnet yerine ssh k
 
 1. Önce bir hostname ve domain-name ataması gerçekleştirdik.
 2. Kripto anahtarını RSA kullanarak oluşturduk. Daha önce oluşturulmuş bir tane anahtar var, tekrar oluşturma işlemi için sordu. İlk kez yapıldığında bu soruyu sormaz. Anahtar boyutunu minumum 1024 bit olarak ayarlamamız gerekir. Maksimum 2048 bit anahtar uzunluğu olabilir. 
-3. Oturumu açmak için bir kullanıcı ve parolaya ihtiyacımız var. Username ve secret komutları ile bunları da oluşturduk. Bu işlem kimlik doğrulama sunucuları ile de yapılabilir.
+3. Oturumu açmak için bir kullanıcı ve parolaya ihtiyacımız var. Username ve secret komutları ile bunları da oluşturduk. Bu işlem kimlik doğrulama sunucuları ile de yapılabilir. Password komutu da kullanılabilir ama password komutuyla atanan parolalar geri çözülebilir bir kriptoyla şifrelenir. Secret ise Salted MD5 kriptoloma algoritmasını kullanılır. Daha sonra bu konuya tekrar değineceğiz. 
 4. Line vty 0-15 hatlarına geçtik ve burada sadece SSH protokolünü etkinleştirdik. Oluşturduğumuz kullanıcı adı ve parolanın etkinleştirilmesini sağladık.
 5. SSH versiyon 2'yi etkinleştirdik. Varsayılan olarak versiyon 1 ve versiyon 2 etkindir. Daha sıkı bir güvenlik versiyon 2'yi tercih etmeliyiz.
-  
+
+## Router Cihazları
+
+Router cihazları birçok arabirim türünü destekler. Seri, DSL, kablo ve Gigabit Ethernet arabirimlerini destekler. HWIC yuvalarına sahiptir. 
+
+![image](https://user-images.githubusercontent.com/70758694/179215337-975e960d-73c9-4223-91ad-e9d41028d24e.png)
+
+Yukarıda görüldüğü gibi 4 yuvaya sahiptir. En soldaki yuvaya Serial High Speed WAN interface card takılmıştır. İki serial portu bulunmaktadır. 
+
+![image](https://user-images.githubusercontent.com/70758694/179216873-b9e56236-885f-4562-8b67-667d4c62ac95.png)
+
+Yukarıdaki gibi takılan bir başka modül konfigüre edilebilir. `description` komutuyla açıklama yazılabilir.
+
 
 
 
