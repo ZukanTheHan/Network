@@ -142,6 +142,14 @@ Bazı komut çıktıları arasında aradığımız bilgiyi bulmamız zor olabili
 
 `section` ile bir bölümün altındaki tüm bilgileri görebiliriz. Yukarıdaki örnekte line vty 0 4 için konfigürasyonu görüntüledik. Router cihazının bir arayüzü hakkındaki bilgileri görüntülemek için `show running-config | interface [arayüz id]` komutunu kullanabiliriz.
 
+![image](https://user-images.githubusercontent.com/70758694/182019033-38dbc6a3-d261-4417-832c-45a265acc092.png)
+
+`include` komutuyla içeren ifadeleri filtreleyebiliriz. Örnekte 'up' olan arayüzleri filtrelemişiz. `exclude` komutuyla da belirli ifadeyi içeremeyen satırları filtreleyebiliriz. `begin [ifade]` komutuyla belli bir ifaden başlayarak geri kalan satırları yazdırabilirsiniz. 
+
+
+
+
+
 
 
 
