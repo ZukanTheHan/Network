@@ -132,6 +132,17 @@ Yukarıdaki komutları uygulayarak loopback interface özelliğini aktif edebili
 ![image](https://user-images.githubusercontent.com/70758694/179234672-a0ed1b7a-d4c0-46d0-899b-9f811a28267e.png)
 
 
+`show ip route` komutu ile router cihazına bağlı ağlar hakkında bilgi alabilirsiniz. Router tablosundaki bir rotanın yanındaki 'C', bunun doğrudan bağlı bir ağ olduğunu gösterir. 'L' ise bağlı olduğu ağdaki router cihazının sahip olduğu IP adresidir. Eğer bağlı olan ağlardan birinde bir sorun çıkarsa, örnek olarak kablo koparsa, router tablosundan bu bilgi de otomatik olarak silinir. 
+
+![image](https://user-images.githubusercontent.com/70758694/182015275-eb454563-7544-4c99-a5d7-044c50c8e954.png)
+
+Bazı komut çıktıları arasında aradığımız bilgiyi bulmamız zor olabilir. Bunun için filterleme kullanabiliriz. `|` pipe işareti bu filtreleme işlemlerini yapabiliriz.
+
+![image](https://user-images.githubusercontent.com/70758694/182015800-42837817-8f11-452c-b95c-3fadeb7d0152.png)
+
+`section` ile bir bölümün altındaki tüm bilgileri görebiliriz. Yukarıdaki örnekte line vty 0 4 için konfigürasyonu görüntüledik. Router cihazının bir arayüzü hakkındaki bilgileri görüntülemek için `show running-config | interface [arayüz id]` komutunu kullanabiliriz.
+
+
 
 
 
