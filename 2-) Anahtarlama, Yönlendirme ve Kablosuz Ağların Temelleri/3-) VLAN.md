@@ -42,5 +42,7 @@ Data VLAN, bilgisayarlar gibi son cihazların kullandığı VLAN gruplarıdır. 
 
 Native VLAN, etiketsiz taşınan frame verileri için atanan VLAN grubudur. Örnek olarak native VLAN olarak VLAN 2'yi atadığımızı düşünelim, diğer VLAN grupları için iki switch arasında trunk ile geçişlerini sağlayalım. Etiket taşımayan her frame trunk üzerinden de etiketsiz bir şekilde taşınıp VLAN 2 grubundaki cihazlara ulaşır. Bu şekilde çalışabilmesi için iki switch içinde native VLAN atamalarının aynı olması lazım. 
 
+## VLAN Konfigürasyonu
+
 
  
