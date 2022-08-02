@@ -44,5 +44,52 @@ Native VLAN, etiketsiz taşınan frame verileri için atanan VLAN grubudur. Örn
 
 ## VLAN Konfigürasyonu
 
+![image](https://user-images.githubusercontent.com/70758694/182361424-c5dcd9f7-1e9a-451a-9590-7ac535182080.png)
+
+VLAN konfigürasyonu oldukça kolaydır. Yukarıdaki dizayn için VLAN konfigürasyonunu aşağıda gerçekleştirdik. PC0 VLAN 2 grubuna dahil edildi. Öncelikle `config` moda geçiş yapıyoruz ve atamak istediğimiz VLAN grubunu seçiyoruz. Burada VLAN 2 seçildi. Daha sonra opsiyonel olarak buna bir isim verdik. İlgili bilgisayarımızın bağlandığı portu konfigüre etmek için fastEthernet 0/1 altına girdik ve `switchport mode access` komutu ile bu portun bir access portu olduğunu belirttik ve `switchport access vlan 2` komutuyla bu portu VLAN 2 grubuna aldık.
+
+![image](https://user-images.githubusercontent.com/70758694/182361197-110d1a83-1727-43c7-9c60-f60aa500b9af.png)
+
+VLAN ataması ile önceden aynı ağ üzerinde bulunan iki bilgisayar artık haberleşemiyor. 
+
+![image](https://user-images.githubusercontent.com/70758694/182363327-1f19d3e2-242c-48b7-913a-58776de9e309.png)
+
+Yaptığımız tüm bu VLAN işlemleri flash dosyasının altında vlan.dat dosyasında tutulur. 
+
+![image](https://user-images.githubusercontent.com/70758694/182362867-3a24f6cc-bd02-4b5a-bf2d-dbfac903ded7.png)
+
+Yaptığımız konfigürasyonu görmek için `show vlan` komutundan yararlanabiliriz. Varsayılan olarak tüm portlar VLAN 1 olduğu için konfigüre edilmemiş olanlar aşağıda görüldüğü VLAN 1 altındadır. 1002-1003-1004-1005 VLAN grupları ethernet dışında token-ring, fddi gibi eski protokolleri kullanabilmek için oluşturulmuştur. Silinemez ve değiştirilemezler. Toplamda 4096 VLAN grubu oluşturulur. Şirketler genelde ilk 1001 VLAN grubunu kullanır, sonrasını ise ISP'ler kullanır. Katı bir sınırlama yoktur. İstenilen VLAN grubu kullanılabilir. 
+
+![image](https://user-images.githubusercontent.com/70758694/182367422-e7f1ec11-536e-4bc2-9eb8-bf1523e20aac.png)
+
+Oluşturulan VLAN gruplarını silmek istersek `no switchport access vlan 2` ve `no vlan 2` komutlarını kullanabiliriz.
+
+![image](https://user-images.githubusercontent.com/70758694/182370728-8ea4d5cf-35c0-419b-a85e-be5dd2a37bf7.png)
+
+`no switchport access vlan 2` komutuyla arayüz üstünde tanımlanmış VLAN grubunu kaldırdık yani bağlı bilgisayar artık VLAN 1 grubuna geçti. `no vlan 2` komutuyla bu grup tanımlamasını sildik.
+
+![image](https://user-images.githubusercontent.com/70758694/182370764-65aa78f2-53c4-42be-af6c-3a7b1bc532a2.png)
+
+Tüm VLAN konfigürasyonunu silmek istersek eğer flash altındaki vlan.dat dosyasını silmemiz gerekiyor. 
+
+![image](https://user-images.githubusercontent.com/70758694/182371687-855b6d8f-91c7-4336-af13-259208632abf.png)
+
+![image](https://user-images.githubusercontent.com/70758694/182379932-de161f38-a41f-47b7-992e-0ed9b02d880f.png)
+
+Yukarıdaki dizayn için VLAN konfigürasyonumuzu yapalım. Burada yapacağımız tek farklı şey iki switch arasında etiketleri kontrol eden portları yani trunk portlarını oluşturmak. Bilgisayarların bağlı olduğu portlar yukarıdaki örnekte olduğu gibi konfigüre edilmiştir. 
+
+![image](https://user-images.githubusercontent.com/70758694/182377680-151bf14f-254a-42c6-b501-a4435f25e9f0.png) ![image](https://user-images.githubusercontent.com/70758694/182377844-678f4dde-5b7f-47dc-bb19-3d8824713155.png)
+
+Switch cihazlarının bilgisayarların bağlı olduğu portlarının VLAN konfigürasonu yukarıdaki gibidir. 
+
+![image](https://user-images.githubusercontent.com/70758694/182378129-474bc79f-a331-48ae-a9f9-42db33deedb4.png) ![image](https://user-images.githubusercontent.com/70758694/182378258-4189073d-8ca9-42e1-be24-91773010001f.png)
+
+PC0 ve PC2 bilgisayarlarının haberleşebilmesi için Switch1 cihazının Fa0/3 portu ve Switch2 cihazının Fa0/4 portu trunk yapılmadır.
+
+![image](https://user-images.githubusercontent.com/70758694/182378441-f3980424-2677-4bef-aa4e-39744dea33b4.png) ![image](https://user-images.githubusercontent.com/70758694/182378513-081d6eeb-5786-4067-be93-09d724c0770c.png)
+
+PC0 PC2'ye ulaşabilirken PC1 ulaşamamaktadır. Bu şekilde başarılı bir şekilde VLAN konfigürasyonu yaptığımızı söylebiliriz. 
+
+
 
  
