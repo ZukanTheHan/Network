@@ -96,6 +96,20 @@ PC0 PC2'ye ulaşabilirken PC1 ulaşamamaktadır. Bu şekilde başarılı bir şe
 
 Cisco cihazlarda bu şekilde trunk konfigürasyonunu gerçekleştirebilirsiniz ama başka marka cihazlarda trunk portlarına hangi etikete ait VLAN paketlerini geçireceğini belirtmemiz lazım. Cisco cihazlarda da buna ihtiyaç duyabiliriz, çünkü bu şekilde her broadcast paketi geçer ama ilgili etikete sahip değilse son cihazlara ulaşmaz. Eğer cihaz sayısı çok fazlaysa bu durum sorun yaratabilir. 
 
-VLAN konfigürasyon örneklerimizde her switch cihazı için tek tek işlem yapmıştık. Bunu kolaylaştırmak için VTP kullanabiliriz. VTP protokolüyle bir switch cihazına yaptığımız konfigürasyon tüm switch cihazlarına otomatik olarak aktarılır. Örnek, VLAN 20 IP Telefon grubu oluşturalım bu bilgi tüm cihazlara aktarılıyor ve trunk portlarında izin veriliyor.
+VLAN konfigürasyon örneklerimizde her switch cihazı için tek tek işlem yapmıştık. Bunu kolaylaştırmak için VTP kullanabiliriz. VTP protokolüyle bir switch cihazına yaptığımız konfigürasyon tüm switch cihazlarına otomatik olarak aktarılır. Örnek, VLAN 20 IP Telefon grubu oluşturalım bu bilgi tüm switch cihazlarına bu protokol sayesinde aktarılır ve trunk portlarında izin verilir.
 
- 
+![image](https://user-images.githubusercontent.com/70758694/182432037-a0a7ff7a-51db-4d5f-ae96-289984902320.png)
+
+Yukarıdaki örnekte IP telefon ve laptop için ayrı ayrı kablo çekmek yerine IP telefonların içine gömülü switch cihazından yararlanıp laptopu IP telefona bağladık. Laptopu personel VLAN grubuna IP telefonunu ise ayrı bir VLAN grubuna almak isteyelim. Bunun için yapılacak konfigürasyon aşağıdaki gibidir. Burada yapılan tek farklı şey voice VLAN ataması gerçekleştirmek.
+
+![image](https://user-images.githubusercontent.com/70758694/182431950-bc448038-9381-4eb3-a985-f1ca6e7464ec.png)
+
+![image](https://user-images.githubusercontent.com/70758694/182445581-30c37fb8-d3ab-4ba9-bd87-5e44c9daeed4.png)
+
+Trunk portlarda yukarıdaki gibi bazı VLAN'lere veya VLAN gruplarına izin verebiliyoruz. İzin verilen VLAN gruplarını kaldırabilir veya yeni VLAN grupları eklenebilir.
+Portları konfigüre ederken `switchport mode access` komutuyla access moduna çekiyoruz, varsayılanda portlar DTP protokolünde çalışır. Dynamic Trunk Protocol, takılan cihaza göre yani bilgisayar gibi son cihaz veya switch cihazına göre portu trunk veya access moduna çekiyor. Bu şekilde bırakılması güvenlik sorunana neden olabilir. Saldırgan herhangi bir porttan bağlanıp bağlı olduğu switch cihazına DTP paketleri göndererek portu trunk moda çekebilir. Bu şekilde istediği VLAN gruplarını üstünden geçirebilir yani MITM saldırısı gerçekleştirebilir. Bunu önlemek için trunk portu haricinden diğer tüm portları acces moda çekmek gerekir. 
+
+![image](https://user-images.githubusercontent.com/70758694/182450980-46adf224-0698-4781-b568-98037a8fea82.png)
+
+
+
