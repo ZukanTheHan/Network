@@ -90,6 +90,12 @@ PC0 ve PC2 bilgisayarlarının haberleşebilmesi için Switch1 cihazının Fa0/3
 
 PC0 PC2'ye ulaşabilirken PC1 ulaşamamaktadır. Bu şekilde başarılı bir şekilde VLAN konfigürasyonu yaptığımızı söylebiliriz. 
 
+![image](https://user-images.githubusercontent.com/70758694/182405153-a425f170-bae3-4859-9e5c-b114d52bfc01.png)
 
+`show interfaces trunk` komutuyla yukarıdaki gibi trunk portlar hakkında bilgi alınabilir. 
+
+Cisco cihazlarda bu şekilde trunk konfigürasyonunu gerçekleştirebilirsiniz ama başka marka cihazlarda trunk portlarına hangi etikete ait VLAN paketlerini geçireceğini belirtmemiz lazım. Cisco cihazlarda da buna ihtiyaç duyabiliriz, çünkü bu şekilde her broadcast paketi geçer ama ilgili etikete sahip değilse son cihazlara ulaşmaz. Eğer cihaz sayısı çok fazlaysa bu durum sorun yaratabilir. 
+
+VLAN konfigürasyon örneklerimizde her switch cihazı için tek tek işlem yapmıştık. Bunu kolaylaştırmak için VTP kullanabiliriz. VTP protokolüyle bir switch cihazına yaptığımız konfigürasyon tüm switch cihazlarına otomatik olarak aktarılır. Örnek, VLAN 20 IP Telefon grubu oluşturalım bu bilgi tüm cihazlara aktarılıyor ve trunk portlarında izin veriliyor.
 
  
