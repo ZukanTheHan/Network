@@ -1,4 +1,4 @@
-# STP 
+# STP (IEEE 802.1D)
 
 Ağlarda yanlış kablolama ve planlama sonucunda döngüler (loop) meydana gelebilir. Özellikle Layer 2 cihazlarında broadcast, konfigürasyonu yapılmamış multicast ve bilinmeyen unicat paketleri yüzünden ağda sürekli olarak akarak haberleşmeyi bitiren sitenmeyen bi olaydır. STP protokolü de ağda oluşabilecek döngüyü (loop) engellemek için geliştirilmiştir. 
 
