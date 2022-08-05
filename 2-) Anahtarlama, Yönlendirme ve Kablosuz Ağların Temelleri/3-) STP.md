@@ -25,12 +25,20 @@ Port durumları da BPDU paketi içerisinde gönderilir. Eğer yukarıda görüld
 - 100 Mbps => 19
 - 10 Mbps => 100
 
-Pat cost değeri büyük olan portunu bloke eder. Bunlar da eşitse o zaman bridge id değerlerine bakılır ve büyük olan yine portunu bloklar. Bridge ID değerleri eğer eşit olursa bunun olması için switch cihazının iki portu birbirine bağlı olaması gerekir. Çünkü, bridge id değerinin MAC adresi içerdiğini söyledik, iki farklı cihazın MAC adresinin normal koşullar altında aynı olması beklenmez. Böyle bir durumda port id değerlerine bakılır. Port id ise port priority değeri ve port numarısından oluşur. Port numaraları farklı olacağı için port numarası büyük olan portunu bloklar.
+Path cost değeri büyük olan portunu bloke eder. Bunlar da eşitse o zaman bridge id değerlerine bakılır ve büyük olan yine portunu bloklar. Bridge ID değerleri eğer eşit olursa bunun olması için switch cihazının iki portu birbirine bağlı olaması gerekir. Çünkü, bridge id değerinin MAC adresi içerdiğini söyledik, iki farklı cihazın MAC adresinin normal koşullar altında aynı olması beklenmez. Böyle bir durumda port id değerlerine bakılır. Port id ise port priority değeri ve port numarısından oluşur. Port numaraları farklı olacağı için port numarası büyük olan portunu bloklar.
 
 ![image](https://user-images.githubusercontent.com/70758694/183099658-d939de69-ce60-44d5-8eb0-70c877e5a106.png) Yukarıdaki gibi bir durumda öncelikle root switch belirlenir. Sonra, port durumları birbirlerine iletilir. Alttaki switch cihazı iki portununda root port olduğunu bilir ve birini bloklaması gerekir. Path cost ve bridge id birbirine eşit olduğu için port id değerine bakılır. Root cihazdan gelen BPDU paketinin içerisinde yer alan port id numarasına göre alttaki switch portlardan birini bloklar. Örnekte görüldüğü gibi root cihazdan gelen BPDU paketindeki port id değeri daha küçük olduğu için birinci port engellenmiştir. 
 
 ![image](https://user-images.githubusercontent.com/70758694/183101594-3c2f403e-2f6e-43f8-8e80-1567cedf49dc.png) ![image](https://user-images.githubusercontent.com/70758694/183101614-0cf19ff2-3e79-4d1b-b05a-dfabc442c517.png)
 
 Eğer kablolardan biri koparsa yukarıdaki görseldeki gibi switch cihazı 15 saniye Listening, 15 saniye Learning toplam 30 saniye sonra bloklanmış portunu açar. 
+
+![image](https://user-images.githubusercontent.com/70758694/183210877-e1907829-8fec-411a-ab7c-525e20cb6f54.png)
+
+Burada farklı bir durum söz konusu. Bloklanmış portun BPDU paketlerini almaya devam ettiğinden bahsetmiştik. BPDU paketi içerisinde root switch bilgisinin yer aldığını da söylemiştik. Buna göre switch 1 cihazı kendini root ilan edecek ve BPDU paketi içerisinde bu bilgiyi gönderecektir. 15 saniye Listening, 15 saniye Learning toplam 30 saniye sonra bloklanmış port açılır. 
+
+![image](https://user-images.githubusercontent.com/70758694/183214135-aa46511a-c4be-4fc4-b99d-3c5d14a22190.png)
+
+Yukarıdaki örnekte arada yönetilemez switch cihazının olduğu ağda turuncu daire ile gösterilmiş port STP sonucunda bloklanmıştır. Daha sonra yönetilemez switch cihazının diğer kablolamasında sorun ortaya çıkmış ve haberleşme durmuştur. Bu durumda bloklanmış port BPDU paketlerini beklediği moda geçer ve 20 saniye bekler. Buna max age denir. 20 saniye sonra yine listening ve learning durumlarında toplam 30 saniye bekledikten sonra bloklanmış port hizmete açılır. 
 
 
