@@ -1,0 +1,36 @@
+# STP 
+
+Ağlarda yanlış kablolama ve planlama sonucunda döngüler (loop) meydana gelebilir. Özellikle Layer 2 cihazlarında broadcast, konfigürasyonu yapılmamış multicast ve bilinmeyen unicat paketleri yüzünden ağda sürekli olarak akarak haberleşmeyi bitiren sitenmeyen bi olaydır. STP protokolü de ağda oluşabilecek döngüyü (loop) engellemek için geliştirilmiştir. 
+
+![image](https://user-images.githubusercontent.com/70758694/183071088-f65a3bbf-c1f6-4ab0-908f-e423805e46be.png)
+
+Yukarıdaki basit modelde herhangi bir uç cihazdan gönderilecek broadcast geldiği port hariç tüm portlardan gönderileceği için sonsuz bir döngü oluşturur. 
+
+![image](https://user-images.githubusercontent.com/70758694/183072018-35468699-fabb-43cf-bae8-dba820b79725.png)
+
+Bu şekilde oluşan bir döngü, ağı birkaç saniyede kullanılamaz hale getirir. Switch cihazlarına ulaşım engellenir. MAC veritabanı sürekli değişerek stabil olmaz. Cihazlarda CPU artışına neden olur. 
+
+![image](https://user-images.githubusercontent.com/70758694/183081738-6a0bd10f-1620-4ebd-8f3e-892f0a8516e8.png)
+
+STP protokolü döngüye sebep olacak portu bloklar ve döngü olmasını engeller. Yukarıda üç switch arasındaki bağlantı durumları verilmiştir. Soldaki modelde swtich cihazları arasında henüz bir bağlantı yok. STP prtokolü bir döngü olup olmadığını anlamaya çalışıyor. En sonda da bir portun bloklandığını görüyoruz. Bu işlem toplam 30 saniye sürüyor. Döngü olup olmadığını ise switch cihazları birbirine gönderdiği BPDU paketleriyle anlar. İki saniyede bir BPDU paketleri gönderilir ve buna hello süresi de denir. Switch daha sonra Listening moda geçer. Bu süre boyunca switch cihazları sadece birbirine BPDU paketi gönderir ve alır. Bu süre zarfında switch cihazları herhangi bir veriyi iletmezler veya MAC adresi kaydetmezler. Buna forward delay denir ve 15 saniye sürer. Daha sonra Learning moduna geçer ve burada MAC adreslerini öğrenmye başlar ama paket iletimi gerçekleşmez. Bu durum da 15 saniye sürer. En son olarak Forwarding durumuna geçilir ve paketleri iletmeye de başlar. 
+
+Listenin durumunda döngüye neden olabilecek bir port varsa blocking durumuna geçilir. Block durumunda port sadece BPDU paketlerini alır. Diğer kablolarda bir sorun çıktığında tekrar aktif duruma geçer. Bloklanacak portun belirlenmesi için önce root switch seçilir. Bu BPDU paketleriyle gerçekleşir. BPDU paketi içerisinde her switch kendi tayin ettiği root switch bilgisini de yollar. İlk başta herkes kendini root switch ilan eder. Ama root switch yine BPDU paketi içerisinde yer alan bridge id numarasıyla belirlenir. Bridge ID, bridge priority ve MAC adresinden oluşur. Bridge priority değeri konfigüre edilebilir. Bridge ID değeri küçük olan root switch olarak seçilir. Root switch belirlendikten sonra portlara değerler atılır; designated port, root switch cihazından çıkan ve root cihazından dışarıya doğru paketleri ileten porttur, root portsa root cihazına doğru giden porttur. 
+
+![image](https://user-images.githubusercontent.com/70758694/183092483-0f7b7c4c-ab56-42fa-8b44-c6d394dea670.png)
+
+Port durumları da BPDU paketi içerisinde gönderilir. Eğer yukarıda görüldüğü iki designated port karşı karşıya gelirse biri portunu bloke eder. Bunu da öncelikle path cost denilen değere bakarak yaparlar. Path cost, portun sahip olduğu hızdır.
+
+- 10 Gbps => 2
+- 1 Gbps => 4
+- 100 Mbps => 19
+- 10 Mbps => 100
+
+Pat cost değeri büyük olan portunu bloke eder. Bunlar da eşitse o zaman bridge id değerlerine bakılır ve büyük olan yine portunu bloklar. Bridge ID değerleri eğer eşit olursa bunun olması için switch cihazının iki portu birbirine bağlı olaması gerekir. Çünkü, bridge id değerinin MAC adresi içerdiğini söyledik, iki farklı cihazın MAC adresinin normal koşullar altında aynı olması beklenmez. Böyle bir durumda port id değerlerine bakılır. Port id ise port priority değeri ve port numarısından oluşur. Port numaraları farklı olacağı için port numarası büyük olan portunu bloklar.
+
+![image](https://user-images.githubusercontent.com/70758694/183099658-d939de69-ce60-44d5-8eb0-70c877e5a106.png) Yukarıdaki gibi bir durumda öncelikle root switch belirlenir. Sonra, port durumları birbirlerine iletilir. Alttaki switch cihazı iki portununda root port olduğunu bilir ve birini bloklaması gerekir. Path cost ve bridge id birbirine eşit olduğu için port id değerine bakılır. Root cihazdan gelen BPDU paketinin içerisinde yer alan port id numarasına göre alttaki switch portlardan birini bloklar. Örnekte görüldüğü gibi root cihazdan gelen BPDU paketindeki port id değeri daha küçük olduğu için birinci port engellenmiştir. 
+
+![image](https://user-images.githubusercontent.com/70758694/183101594-3c2f403e-2f6e-43f8-8e80-1567cedf49dc.png) ![image](https://user-images.githubusercontent.com/70758694/183101614-0cf19ff2-3e79-4d1b-b05a-dfabc442c517.png)
+
+Eğer kablolardan biri koparsa yukarıdaki görseldeki gibi switch cihazı 15 saniye Listening, 15 saniye Learning toplam 30 saniye sonra bloklanmış portunu açar. 
+
+
