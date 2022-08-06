@@ -48,7 +48,7 @@ STP, oldukça yavaş bir protokol. En küçük sorunda en az 30 saniye hizmet al
 
 PVSTP+(Per-VLAN Spanning Tree Protocol), Cisco tarafından geliştirilmiştir. Yük paylaşımı özelliği getirmiştir. STP, sadece tek bir ağaç oluşturur. PVSTP+ ise her VLAN için ağaç oluşturur ve bu sayede bir VLAN tarafından kullanılmayan port diğer VLAN tarafından kullanılır ve bu sayede yük paylaşımı gerçekleştirilmiş olur. Ayrıca, PVSTP+ ile PortFast, UplinkFast, BackboneFast, BPDU guard, BPDU filter, root guard ve loop guard desteğiyle hız ve güvenlikte sağlanmıştır. 
 
-RSTP(Rapid Spanning Tree Protocol), IEEE tarafından geliştirilmiştir. Oldukça hızlıdır. Yük paylaşımı yapmaz. 
+RSTP(Rapid Spanning Tree Protocol), IEEE tarafından geliştirilmiştir. Oldukça hızlıdır. Yük paylaşımı yapmaz. Switch cihazalrı arasında oldukça hızlı bir şekilde çalışan bu protokol bir sorun çıktığında maksimum 2 saniye içinde hattı açar, eğer switch cihazının ucunda bir bilgisayar takılıysa bilgisayar BPDU paketi gönderemediğinden switch yine 30 saniye bekler. Bunu hızlandırmak için PortFast desteğinden yararlanabiliriz, bu sayede bir başka sorun olan bilgisayar gibi cihazların IP alamabilgisayar  STP protokolünde bulunan Learning ve Listening durumlarına RSTP protokolünde Discarding denir. Block porta ise Backup veya Alternate port denir. 
 
 Rapid PVST+, Cisco tarafından geliştirilmiştir. Hem çok hızlıdır hem de yük paylaşımı yapar.
 
