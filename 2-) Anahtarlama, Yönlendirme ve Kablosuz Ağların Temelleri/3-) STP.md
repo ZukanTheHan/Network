@@ -42,3 +42,34 @@ Burada farklı bir durum söz konusu. Bloklanmış portun BPDU paketlerini almay
 Yukarıdaki örnekte arada yönetilemez switch cihazının olduğu ağda turuncu daire ile gösterilmiş port STP sonucunda bloklanmıştır. Daha sonra yönetilemez switch cihazının diğer kablolamasında sorun ortaya çıkmış ve haberleşme durmuştur. Bu durumda bloklanmış port BPDU paketlerini beklediği moda geçer ve 20 saniye bekler. Buna max age denir. 20 saniye sonra yine listening ve learning durumlarında toplam 30 saniye bekledikten sonra bloklanmış port hizmete açılır. 
 
 
+STP, oldukça yavaş bir protokol. En küçük sorunda en az 30 saniye hizmet alamıyoruz. Yedeklilik için takılan kablolar yük paylaşımı da gerçekleştirmiyor. Bu yüzden hem Cisco hem de IEEE pek çok varyasyon geliştirmiştir.
+
+## STP Versiyonları
+
+PVSTP+(Per-VLAN Spanning Tree Protocol), Cisco tarafından geliştirilmiştir. Yük paylaşımı özelliği getirmiştir. STP, sadece tek bir ağaç oluşturur. PVSTP+ ise her VLAN için ağaç oluşturur ve bu sayede bir VLAN tarafından kullanılmayan port diğer VLAN tarafından kullanılır ve bu sayede yük paylaşımı gerçekleştirilmiş olur. Ayrıca, PVSTP+ ile PortFast, UplinkFast, BackboneFast, BPDU guard, BPDU filter, root guard ve loop guard desteğiyle hız ve güvenlikte sağlanmıştır. 
+
+RSTP(Rapid Spanning Tree Protocol), IEEE tarafından geliştirilmiştir. Oldukça hızlıdır. Yük paylaşımı yapmaz. 
+
+Rapid PVST+, Cisco tarafından geliştirilmiştir. Hem çok hızlıdır hem de yük paylaşımı yapar.
+
+MSTP(Multiple Spanning Tree Protocol), IEEE tarafından ortaya çıkarılmıştır. Tüm markalarda kullanılabilir. Çok hızlıdır ve yük paylaşımı gerçekleştirir. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
