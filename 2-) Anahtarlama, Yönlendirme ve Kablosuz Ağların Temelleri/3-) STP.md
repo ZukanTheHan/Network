@@ -48,11 +48,43 @@ STP, oldukça yavaş bir protokol. En küçük sorunda en az 30 saniye hizmet al
 
 PVSTP+(Per-VLAN Spanning Tree Protocol), Cisco tarafından geliştirilmiştir. Yük paylaşımı özelliği getirmiştir. STP, sadece tek bir ağaç oluşturur. PVSTP+ ise her VLAN için ağaç oluşturur ve bu sayede bir VLAN tarafından kullanılmayan port diğer VLAN tarafından kullanılır ve bu sayede yük paylaşımı gerçekleştirilmiş olur. Ayrıca, PVSTP+ ile PortFast, UplinkFast, BackboneFast, BPDU guard, BPDU filter, root guard ve loop guard desteğiyle hız ve güvenlikte sağlanmıştır. 
 
-RSTP(Rapid Spanning Tree Protocol), IEEE tarafından geliştirilmiştir. Oldukça hızlıdır. Yük paylaşımı yapmaz. Switch cihazalrı arasında oldukça hızlı bir şekilde çalışan bu protokol bir sorun çıktığında maksimum 2 saniye içinde hattı açar, eğer switch cihazının ucunda bir bilgisayar takılıysa bilgisayar BPDU paketi gönderemediğinden switch yine 30 saniye bekler. Bunu hızlandırmak için PortFast desteğinden yararlanabiliriz, bu sayede bir başka sorun olan bilgisayar gibi cihazların IP alamabilgisayar  STP protokolünde bulunan Learning ve Listening durumlarına RSTP protokolünde Discarding denir. Block porta ise Backup veya Alternate port denir. 
+RSTP(Rapid Spanning Tree Protocol - 802.1w), IEEE tarafından geliştirilmiştir. Oldukça hızlıdır. Yük paylaşımı yapmaz. Switch cihazalrı arasında oldukça hızlı bir şekilde çalışan bu protokol bir sorun çıktığında maksimum 2 saniye içinde hattı açar, eğer switch cihazının ucunda bir bilgisayar takılıysa bilgisayar BPDU paketi gönderemediğinden switch yine 30 saniye bekler. Bunu hızlandırmak için PortFast desteğinden yararlanabiliriz, bu sayede bir başka sorun olan bilgisayar gibi cihazların IP alamayıp internete çıkamamasını engelleyebiliriz ama PortFast durumunda cihazlar uyarı mesajı gönderirler çünkü döngüye neden olabilir, dikkatli bir şekilde kullanılaması önerilir. PortFast aktif edilmiş port döngüye neden olmasın diye BPDU guard desteği kullanılabilir. BPDU guard, ucunda son cihaz olduğu belirlenmiş port üzerinden BPDU paketi gelirse döngüye neden olmasın diye portu kapatır. STP protokolünde bulunan Learning ve Listening durumlarına RSTP protokolünde Discarding denir. Block porta ise Backup veya Alternate port denir. 
 
 Rapid PVST+, Cisco tarafından geliştirilmiştir. Hem çok hızlıdır hem de yük paylaşımı yapar.
 
-MSTP(Multiple Spanning Tree Protocol), IEEE tarafından ortaya çıkarılmıştır. Tüm markalarda kullanılabilir. Çok hızlıdır ve yük paylaşımı gerçekleştirir. 
+MSTP(Multiple Spanning Tree Protocol - 802.1s), IEEE tarafından ortaya çıkarılmıştır. Tüm markalarda kullanılabilir. Çok hızlıdır ve yük paylaşımı gerçekleştirir. 
+
+
+## Konfigürasyon
+
+STP protokolünün çalışması için hernagi bir konfigürasyon yapılasına gerek yok. Otomatik olarak çalışır. Belli switch cihazlarının root switch olmasını istiyorsanız Bridge priority değerini değiştirebilirsiniz. 
+
+![image](https://user-images.githubusercontent.com/70758694/183244961-be1f731a-967a-412c-9f8f-a6208b615fef.png)
+
+Yukarıdaki modelde Layer 3 switch cihazının root siwtch olmasını isterken otomatik olarak çalışan STP ile bir başka cihaz root switch seçildi. 
+
+![image](https://user-images.githubusercontent.com/70758694/183244953-10c857fb-737d-4118-b8b4-3d1571f1a0ed.png)
+
+`show spanning-tree` komutuyla yukarıda Layer 3 switch cihazı için STP konfigürasyonunu kontrol ediyoruz. Göründüğü gibi root switch olarak başka bir switch cihazını atamış. 
+
+![image](https://user-images.githubusercontent.com/70758694/183245940-4518770a-35b6-4e0a-9938-40c526cb500c.png) ![image](https://user-images.githubusercontent.com/70758694/183245981-c7fb6bdb-71d4-4b46-b5f8-d8388e84febf.png)
+
+Priority değerini değiştirerek root switch atamasını tekrar gerçekleşitiriyoruz.
+
+![image](https://user-images.githubusercontent.com/70758694/183248147-c5963e2d-c42f-46a7-938f-733386f7bd0f.png) PVSTP+ yavaş çalışır, rapid PVSTP+ moduna almak için yukarıdaki konfigürasyonu her switch üzerinde yapmamız gerekir. 
+
+![image](https://user-images.githubusercontent.com/70758694/183248324-8414c763-8e0e-4c7d-8e3d-a0e369431344.png)
+
+Ucuna bilgisayar takılan portları PortFast durumuna getirerek hızlıca IP almasını sağlayabiliriz. Eğer yapmazsak 30 saniye bekleyeceği için cihaz IP almayabilir. Son kullanıcı için bu bir sorundur. 
+
+![image](https://user-images.githubusercontent.com/70758694/183248375-65e74b23-e8de-45ef-8541-978100e74707.png)
+
+Cihazın takılı olduğu port arayüzünde PortFast ve BPDU guard özelliğini aktif ettik. Anında link alabilecek ve ucuna BPDU gönderen bir cihaz takıldığında bağlantıyı sonlandıracaktır. 
+
+![image](https://user-images.githubusercontent.com/70758694/183248425-3492c926-e4b0-4872-836d-500789f9675e.png)
+
+Göründüğü switch cihazı takıldığı anda bağlantı sonlandırıldı. 
+
 
 
 
