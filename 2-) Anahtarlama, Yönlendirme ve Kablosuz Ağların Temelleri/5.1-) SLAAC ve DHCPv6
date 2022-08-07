@@ -1,0 +1,15 @@
+# SLAAC ve DHCPv6
+
+IPv6 adres atamalarında iki farklı durum vardır; stateless, statefull. Stateless şeklinde atamalar gerçekleşirse cihazların takibi yapılamıyor. Statefull şeklindeyse takip yapabiliyoruz. Stateless ikiye ayrılıyor, SLAAC only ve Stateless DHCPv6. Stateful tarafındaysa sadece bir durum mevcut stateful DHCPv6. 
+
+IPv6 adres atamasında client cihazlar ICMPv6(Type 133) Router Solicitation paketiyle ağdaki router cihazlarına IPv6 adresi istedğini belirtiyor. Router cihazları ICMPv6(Type 134) Router Advertisement cevabıyla cihazlara ne yapması gerektiğini söyler. Router cihazalrı bu paketi belirli aralıklarla sürekli olarak ağa gönderimini sağlar. Bu iki pakette multicast olarak gönderilir, IPv6 teknolojisinde broadcast paketi yoktur. Son cihazlarda hedef adres olarak FF02::2 yazılır, tüm router cihazlarını hedefler, router cihazları da hedef adres olarak FF02::2 yazılır ve tüm son cihazlara paket gönderimi sağlanır.   
+
+SLAAC ile DHCPv6 sunucusu bulunmayan ağlarda cihazlar kendi IPv6 adreslerini atayabiliyorlar. SLAAC Only metoduyla son cihaz gelen RA mesajından kendi IP adresini türetiyor, varsayılan ağ geçidi ayarlıyor ve subnet maskesini ayarlıyor. DNS ise statik olarak atanıyor. RA mesajında 3 farklı bayrak vardır;**A**,**O** ve **M**.**A**bayrağı, SLAAC Only bayrağıdır, sadece bu işaretlenmişse cihaz RA mesajı içerisinde yer alan router cihazının IPv6 adresinden kendi IPv6 adresini türetiyor ve DNS statik olarak atanması gerekiyor. Konfigürasyonu oldukça kolaydır, tek yapmamız gereken router cihazının ilgili arayüzüne IPv6 adresi atamak ve config modda `ipv6 unicast-routing` komutuyla IPv6 yönlendirmeyi açıyoruz. 
+
+Host cihaz IPv6 türetme işleminde son 64 biti rastlansal olarak türetir, birde EUI-64 tekniği vardır. EUI-64 ile bilgisayar MAC adresinin ilk 24 bitinden sonra FF-FE ekler sonraki 24 bitle birleştirir ve bunu son 64 bite ekler ama bu teknik kullanılmamaktadır. 
+
+Router cihazı RA mesajı içerisinde **A** ve **O** bayrakları işaretliyse o zaman cihaz kendi IP adresini türetir, varsayılan ağ geçidini konfigüre eder ve diğer bilgilerini bu DHCPv6 sunucusundan alır. Buna da Stateless DHCPv6 metodu denir. DHCP üzerinden IP adresi almadığı için yine takip edilemez. `ipv6 nd other-config-flag` 
+
+
+
+
