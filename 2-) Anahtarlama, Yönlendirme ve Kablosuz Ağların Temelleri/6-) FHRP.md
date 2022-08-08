@@ -30,5 +30,5 @@ HSRP protokolünde cihazlar multicast adreslerine hello paketleri gönderir ve h
 
 HSRP 5 durumdan oluşur. Initial, Learn, Listen, Speak ve Standby. Initial, konfigürasyon yapılmış ama daha sistem çlışmıyor. Learn, router virtual IP adresini, aktif router cihazını bilmiyor ve hello mesajı bekliyor. Listen, virtual IP adresini öğrenmiştir ama aktif veya bekleme modunda değildir, hello paketini bekler. Speak, yönlendirici periyodik olarak hello mesajları gönderir ve aktifle beklemede olan router seçilir. Stanby, router bir sonraki aktif router adayıdır ve periyodik olarak hello paketleri gönderilir. 
 
-Beklemede olan router, aktif cihazdan 10 saniye boyunca hello paketi alamazsa aktif router rolünü üstlenir. Aktif router tekrar hizmet vermeye dönerse varsayılan olarak beklemede kalır ama Preemption özelliği ile istenilirse aktif cihaz hizmete geri döndüğünde tekrar aktif cihaz rolünü alır.
+Beklemede olan router, aktif cihazdan 10 saniye boyunca hello paketi alamazsa aktif router rolünü üstlenir. Bu süre değiştirilebilir. Aktif router tekrar hizmet vermeye dönerse varsayılan olarak beklemede kalır ama Preemption özelliği ile istenilirse aktif cihaz hizmete geri döndüğünde tekrar aktif cihaz rolünü alır.
 
