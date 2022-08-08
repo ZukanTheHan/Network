@@ -32,4 +32,22 @@ HSRP 5 durumdan oluşur. Initial, Learn, Listen, Speak ve Standby. Initial, konf
 
 Beklemede olan router, aktif cihazdan 10 saniye boyunca hello paketi alamazsa aktif router rolünü üstlenir. Bu süre değiştirilebilir. Aktif router tekrar hizmet vermeye dönerse varsayılan olarak beklemede kalır ama Preemption özelliği ile istenilirse aktif cihaz hizmete geri döndüğünde tekrar aktif cihaz rolünü alır.
 
+## Konfigürasyon
 
+![image](https://user-images.githubusercontent.com/70758694/183488685-ef6edc01-72b8-4f8d-b5d7-0c6993455d46.png)
+
+Çalışacağımız model yukarıdaki gibidir. Router cihazlarının adreslerini şekilde göründüğü gibi atadık. Son cihazların varsayılan ağ geçidi virtual IP adresi olarak ayarlanmıştır. 
+
+![image](https://user-images.githubusercontent.com/70758694/183489152-3711c92e-f4ab-4f35-8218-83bd2d8ae836.png) ![image](https://user-images.githubusercontent.com/70758694/183489228-e9698cb1-e065-412a-8f49-301f83fb7058.png)
+
+Router cihazalrı üzerindeki konfigürasyon bu şekilde oldukça kolay. Sadece tek satır komutla bunu gerçekleştirebiliyoruz. `show standby brief` komutuyla HSRP hakkında özet bilgi alabiliriz. 
+
+![image](https://user-images.githubusercontent.com/70758694/183489842-98078c41-91fc-4622-b2aa-186f6b4e737d.png)
+
+YUkarıdaki görsel bir son cihazın ping atma işlemini gösteriyor. Bu işlem sırasında aktif olan router cihazının bağlantısını kesiyoruz ve işaretli alanda görüldüğü gibi biraz gecikme olduktan sonra beklemede olan router aktif role bürünüyor ve paketleri almaya devam ediyor.
+
+IP adresinin sayısal büyüklüğü aktif router cihazını belirlediğini söylemiştik, buradaysa tam tersi bir durum söz konusu. Bunun sebebi 10.0.0.1 router cihazını daha önce konfigüre etmemiz. 
+
+![image](https://user-images.githubusercontent.com/70758694/183492488-b7122796-b032-41c4-9b69-6e914bbe34c3.png)
+
+Priority değerini değiştirerek hangi cihazın aktif olacağını seçebiliriz. Eğer herhangi bir sorun olursa tekrar aktif cihaz rolünü oynaması için preemption özelliğinden yararlanabiliriz.
