@@ -32,3 +32,4 @@ HSRP 5 durumdan oluşur. Initial, Learn, Listen, Speak ve Standby. Initial, konf
 
 Beklemede olan router, aktif cihazdan 10 saniye boyunca hello paketi alamazsa aktif router rolünü üstlenir. Bu süre değiştirilebilir. Aktif router tekrar hizmet vermeye dönerse varsayılan olarak beklemede kalır ama Preemption özelliği ile istenilirse aktif cihaz hizmete geri döndüğünde tekrar aktif cihaz rolünü alır.
 
+
