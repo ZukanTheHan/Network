@@ -28,7 +28,7 @@ Erişim kontrolü için ağ cihazlarında 802.1x protokolü kullanılabilir. Var
 
 ## Güvenlik zafiyetleri, saldırılar ve önleme
 
-MAC address flooding saldırısıyla saldırgan farklı farklı binlerce MAC adresi oluşturur ve bunlarla trafik oluşturur. Switch cihazı da tüm bu MAC adreslerini öğrenir ve sınıra dayanır. MAC adresi tablosu dolduğunda yeni bir MAC adresi öğrnemeyeceği için gelen her paketi geldiği port tüm portlardan iletir. Port güvenliği alınarak tek bir port üzerinden öğrenilecek MAC adresini sınırlandırabilirsiniz. 
+MAC address flooding saldırısıyla saldırgan farklı farklı binlerce MAC adresi oluşturur ve bunlarla trafik oluşturur. Switch cihazı da tüm bu MAC adreslerini öğrenir ve sınıra dayanır. MAC adresi tablosu dolduğunda yeni bir MAC adresi öğrenemeyeceği için gelen her paketi geldiği port tüm portlardan iletir. Port güvenliği alınarak tek bir port üzerinden öğrenilecek MAC adresini sınırlandırabilirsiniz. 
 
 VLAN hoping saldırısı, Cisco cihazlarda VLAN konfigürasyonunda port Dynamic-auto olarak bırakılmışsa saldırgan DTP trafiği yaratıp kendi bulunduğu portu trunk porta çekip istediği VLAN grubuna erişim sağlayabilir. Bunun en kolay trunk portu dışındaki tüm portları access moda çekmek. 
 
@@ -44,3 +44,4 @@ STP saldırısı, saldırganın BPDU paketleri oluşturarak kendini switch olara
 
 CDP vee LLDP protokolleriyle ağ cihazları kendileri hakıında her 30 saniyede bir bilgi yayınlarlar. Keşif saldırısı gerçekleşmesin diye bu protokoller kapatılabilir. Konfigürasyon modunda `no cdp run` veya `no lldp run` komutlarıyla bu yapılabilir. Kapatılaması önerilmez. Portlar üzerinde ayrı ayrı kapatılabilir. CDP için `no cdp enable` LLDP için `no lldp transmit` ve `no lldp receive` komutlarıyla gerçekleştirilir. 
 
+Kullanılmayan portların kapalı kalması ek bir güvenlik sağlar. 
