@@ -45,3 +45,7 @@ STP saldırısı, saldırganın BPDU paketleri oluşturarak kendini switch olara
 CDP vee LLDP protokolleriyle ağ cihazları kendileri hakıında her 30 saniyede bir bilgi yayınlarlar. Keşif saldırısı gerçekleşmesin diye bu protokoller kapatılabilir. Konfigürasyon modunda `no cdp run` veya `no lldp run` komutlarıyla bu yapılabilir. Kapatılaması önerilmez. Portlar üzerinde ayrı ayrı kapatılabilir. CDP için `no cdp enable` LLDP için `no lldp transmit` ve `no lldp receive` komutlarıyla gerçekleştirilir. 
 
 Kullanılmayan portların kapalı kalması ek bir güvenlik sağlar. 
+
+![image](https://user-images.githubusercontent.com/70758694/183700617-d2974576-f6a7-46f1-9947-a2f1317fe71d.png)
+
+Port securtiy özelliğiyle port üzerinde tanımlanacak maksimum MAC adresi sınırlandırılır. Varsayılan olarak bu 1'dir
