@@ -40,7 +40,7 @@ ARP zehirleme saldırısında saldırgan MAC address spoofing yaparak hedef ciha
 
 IP spoofing saldırısıyla saldırgan kendini başka bir cihaz olarak gösterebilir. Bunu da IP adresini değiştirerek yapar. IP Source Guard ile hem MAC spoofing hem de IP spoofing engellenebilir. 
 
-STP saldırısı, saldırganın BPDU paketleri oluşturarak kendini switch olarak ilan etmesidir. Bu şekilde eğer ortama koşulları sağlıyorsa belli bir trafiği üsütnden geçirebilir. Ama daha çok ağ bağlatısını sekteye uğratmak için kullanılabilir. Sürekli priority değerini değiştirerek root switch olup bırakabilir. Bu şekilde bloklanacak port sürekli değişeceği için ağ üzerinde paket iletiminde sorun olabilir. BPDU Guard ile bunu engelleyebiliriz.
+STP saldırısı, saldırganın BPDU paketleri oluşturarak kendini switch olarak ilan etmesidir. Bu şekilde eğer ortama koşulları sağlıyorsa belli bir trafiği üstünden geçirebilir. Ama daha çok ağ bağlatısını sekteye uğratmak için kullanılabilir. Sürekli priority değerini değiştirerek root switch olup bırakabilir. Bu şekilde bloklanacak port sürekli değişeceği için ağ üzerinde paket iletiminde sorun olabilir. BPDU Guard ile bunu engelleyebiliriz.
 
 CDP vee LLDP protokolleriyle ağ cihazları kendileri hakıında her 30 saniyede bir bilgi yayınlarlar. Keşif saldırısı gerçekleşmesin diye bu protokoller kapatılabilir. Konfigürasyon modunda `no cdp run` veya `no lldp run` komutlarıyla bu yapılabilir. Kapatılaması önerilmez. Portlar üzerinde ayrı ayrı kapatılabilir. CDP için `no cdp enable` LLDP için `no lldp transmit` ve `no lldp receive` komutlarıyla gerçekleştirilir. 
 
@@ -48,4 +48,12 @@ Kullanılmayan portların kapalı kalması ek bir güvenlik sağlar.
 
 ![image](https://user-images.githubusercontent.com/70758694/183700617-d2974576-f6a7-46f1-9947-a2f1317fe71d.png)
 
-Port securtiy özelliğiyle port üzerinde tanımlanacak maksimum MAC adresi sınırlandırılır. Varsayılan olarak bu 1'dir
+Port security özelliğiyle port üzerinde tanımlanacak maksimum MAC adresi sınırlandırılır. Varsayılan olarak bu 1'dir. Bu sayı arttırılabilir. Örnek olarak eğer IP telefon arkasına bilgisayar bağlanmışsa en az iki MAC adresinin aynı port üzerinden hizmet alması gerekir. Switch cihazları arası bir portsa zaten bunun uygulanması önerilmez. Yukarıdaki görselde görüldüğü gibi tek satır komutla port security tanımlanabilir. Violation mode, kural ihlalinde gerçekleştirilecek durumdur, eğer birden fazla MAC adresi tanımlanmaya çalışılırsa port kendini kapatacaktır. Ayrıca port dynamic modda olmaması gerekir. 
+
+![image](https://user-images.githubusercontent.com/70758694/183716781-e7c799a4-a029-4caf-87a4-e61ba8e60046.png)
+
+Port-security modunun pek çok özelliği konfigüre edilebilir. Yukaırda maksimum kabul edeceği MAC adresi sayısını değiştirdik. İşaretli olan yerde göründüğü gibi bunu 2 MAC adresine çektik. 
+
+![image](https://user-images.githubusercontent.com/70758694/183721670-196dbf30-0991-4581-8913-f084d68a6056.png)
+
+MAC adres bazlı güvenlik önlemi alınabilir. Yukarıdaki görselde görüldüğü gibi port üzerinden bağlanacak cihazların MAC adresleri önceden tanımlanabilir. Manuel olarak MAC adresi girilip portun spesifik olarak belli cihazlara hizmet vermesi sağlanabilir. Başka bir cihaz gelip bu porttan ağa bağlanamaz. Cihaz sayısı çok fazlaysa ve farklı portlardan bağlanan cihazlarsa manuel olarak bunların atamalarını yapmak oldukça zor olur. Bunun yerine `switchport port-security mac-address sticky` komutuyla otomatik olarak bağlanan ilk cihazın MAC adresini öğrenir ve switch kapatılıp açılsa bile konfigürasyona kaydedilebildiği için MAC adres bilgisi silinmez. Varsayılan olarak bu özellik dinamiktir, konfigürasyona kaydedilmez. 
