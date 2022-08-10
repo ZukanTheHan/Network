@@ -66,3 +66,18 @@ Yukarıdaki görselde aging inactivity olarak seçilmiştir. Bu sayede 10 dakika
 
 Violation modunu konfigüre edebiliyoruz. Shutdown ile port error-disabled durumuna geçer, syslog mesajı oluşturur ve tekrar açılması için yöneticinin önce `shutdown` sonra `no shutdown` komutlarını girmesi gerekir. Restrict ile kural ihlali yapıldığında bağlı olan cihazlar trafik gönderip almaya devam ederler ama kural ihlali yapan cihaz ağa bağlanamaz ve syslog mesajı oluşturulur. Protect modunda ise kural ihlali yapan ağa bağlanamaz, diğer cihazların bağlantısında bir aksama olmaz ama syslog mesajı da oluşturmaz.
 
+![image](https://user-images.githubusercontent.com/70758694/183927411-eab55299-be61-4fc3-ac9b-008d2bf27861.png)
+
+Yukarıdaki görselde göründüğü gibi üç farklı şekilde komut girilebilir. 
+
+![image](https://user-images.githubusercontent.com/70758694/183931660-7fade083-5d86-45b1-a6ee-7fb40f896ab1.png) ![image](https://user-images.githubusercontent.com/70758694/183931488-38701cca-9988-4856-93ea-c1d492bd6169.png)
+
+![image](https://user-images.githubusercontent.com/70758694/183934270-f1029be1-7f62-4a84-a960-7af1117105b7.png)
+
+![image](https://user-images.githubusercontent.com/70758694/183935422-116ab80b-d810-47dc-855c-47dbf7783872.png)
+
+Yukarıdaki modelde 2 bilgisayar ve yönetilebilen switch cihazının MAC adresleri olduğu için dördüncü bir cihazla birlikte violation kuralı uygulanıyor. 
+
+
+
+
