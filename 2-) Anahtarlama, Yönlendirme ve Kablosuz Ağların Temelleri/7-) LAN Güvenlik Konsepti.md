@@ -34,7 +34,7 @@ VLAN hoping saldırısı, Cisco cihazlarda VLAN konfigürasyonunda port Dynamic-
 
 DHCP starvation saldırsında saldırgan Gobbler gibi araçlarla kiralanabilir tüm IP adreslerini kiralar, bunu sahte MAC adresleri türeterek gerçekleştirir. Başka bir kullanacı IP adresi alamadığı için internet hizmeti alamaz. Bunun için son cihazların kiralayabileceği IP adresine sınır getirip koruma sağlayabiliriz.
 
-DHCP spoofing saldırsındaysa saldırgan sahte bir DHCP sunucusu kurar ve kullanıcılara bilgi dağıtmaya başlar. IP adreslerini yanlış verip internet hizmetinden yararlanmalarını engelleyebilir, sahte bir DNS adresi verir ve meşru sitelerin sahte adreslerini kullancıya sağlayıp kullancı bilgilerini çalmaya çalışabilir veya varsayılan ağ geçidi adresi olarak kendi cihazının adresini verebilir ve trafiği üstünden geçirebilir. 
+DHCP spoofing saldırsındaysa saldırgan sahte bir DHCP sunucusu kurar ve kullanıcılara bilgi dağıtmaya başlar. IP adreslerini yanlış verip internet hizmetinden yararlanmalarını engelleyebilir, sahte bir DNS adresi verir ve meşru sitelerin sahte adreslerini kullancıya sağlayıp kullancı bilgilerini çalmaya çalışabilir veya varsayılan ağ geçidi adresi olarak kendi cihazının adresini verebilir ve trafiği üstünden geçirebilir. DHCP snooping özelliği ile bu iki atağa karşı koruma sağlayabiliriz. DHCP snooping, portlara trust ve untrust denilen iki rol atar. Trust portlar server tarafının gönderebileceği DHCP paketlerini gönderebilir, untrust ise client tarafında bulunan cihazların gönderebileceği DHCP paketlerini sadece gönderebilir. Ayrıca untrust portlar 
 
 ARP zehirleme saldırısında saldırgan MAC address spoofing yaparak hedef cihazların MAC adresi tablosunu manipüle edebilir. Örnek olarak saldırgan aynı ağda bulunan hedef cihaza ARP reply paketi göndererek kendini varsayılan ağ geçidi olarak tanıtabilir, buna da paket içerisinde MAC adresini göndererek yapar. Diğer taraftan başka bir ARP reply ile varsayılan ağ geçidine kendini hedef cihaz olarak tanıtabilir. Hedef cihaz üzerinden oluşturualn trafik farklı ağlara gidecekse saldırgan üzerinden geçer. 
 
@@ -77,6 +77,7 @@ Yukarıdaki görselde göründüğü gibi üç farklı şekilde komut girilebili
 ![image](https://user-images.githubusercontent.com/70758694/183935422-116ab80b-d810-47dc-855c-47dbf7783872.png)
 
 Yukarıdaki dizaynda 2 bilgisayar ve yönetilebilen switch cihazının MAC adresleri olduğu için dördüncü bir cihazla birlikte violation kuralı uygulanıyor. 
+
 
 
 
