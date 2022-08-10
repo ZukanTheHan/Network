@@ -76,7 +76,7 @@ Yukarıdaki görselde göründüğü gibi üç farklı şekilde komut girilebili
 
 ![image](https://user-images.githubusercontent.com/70758694/183935422-116ab80b-d810-47dc-855c-47dbf7783872.png)
 
-Yukarıdaki modelde 2 bilgisayar ve yönetilebilen switch cihazının MAC adresleri olduğu için dördüncü bir cihazla birlikte violation kuralı uygulanıyor. 
+Yukarıdaki dizaynda 2 bilgisayar ve yönetilebilen switch cihazının MAC adresleri olduğu için dördüncü bir cihazla birlikte violation kuralı uygulanıyor. 
 
 
 
