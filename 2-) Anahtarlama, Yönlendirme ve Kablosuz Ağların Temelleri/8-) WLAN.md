@@ -49,4 +49,71 @@ Directional, yönlü antenler, radyo sinyalini belirli bir yöne odaklar. Anteni
 MIMO, IEEE 802.11n/ac/ax kablosuz ağlar için mevcut bant genişliğini artırmak için çoklu antenler kullanır. Verimi artırmak için sekiz adede kadar verici ve alıcı anten kullanılabilir. Bu sayede aynı frekans üzerinden birden fazla paket gönderimi olur. 
 
 
+## 802.11 Wireless Topoloji 
+
+**Ad hoc mode** - Cihazları uçtan uca AP olmadan bağlamak. 
+
+**Infastructure mode** - Son sihazları AP kullanarakağa bağlamak.
+
+**Tethering** - Akıllı bir telefon veya tabletin hücresel bağlantısını hotspot olarak kullanarak cihazları ağa çıkarma. 
+
+Infastructure mode, iki topoloji tipni tanımlar: Basic Service Set(BSS) ve Extended Service Set(ESS).
+
+Basic Service Set(BSS), ilişkili tüm kablosuz istemcileri birbirine bağlayan tek bir AP'den oluşur. AP'nin MAC adresi, Basic Service Set Identifier(BSSID) olarak adlandırılan her BSS'yi benzersiz şekilde tanımlamak için kullanılır.
+
+Extendent Service Set, tek bir BSS yetersiz kapsama sağladığında, iki veya daha fazla BSS, ortak bir dağıtım sistemi (DS) aracılığıyla bir ESS'ye dönüştürülebilir. Bir ESS, kablolu bir DS ile birbirine bağlanan iki veya daha fazla BSS'nin birleşimidir. Her ESS bir SSID ile tanımlanır ve her BSS kendi BSSID'si ile tanımlanır.
+
+## 802.11 Frame Yapısı
+
+![image](https://user-images.githubusercontent.com/70758694/184153155-4f1a915c-83d6-48f0-ae94-9841fc526de0.png)
+Tüm 802.11 kablosuz frame yapısı aşağıdaki alanları içerir:
+- Frame Control - Bu, kablosuz frame türünü tanımlar ve protokol sürümü, frame türü, adres türü, güç yönetimi ve güvenlik ayarları için alt alanlar içerir.
+- Duration - Bu genellikle bir sonraki frame iletimini almak için gereken kalan süreyi belirtmek için kullanılır.
+
+Kablosuz bir cihazdan gönderilen frame:
+- Adres 1 - AP'nin MAC adresi.
+- Adres 2 - Gönderenin MAC adresi.
+- Adres 3 - Hedefin MAC adresi.
+
+AP cihazından gönderilen frame:
+- Adres 1 - Gönderenin MAC adresi.
+- Adres 2  - AP'nin MAC adresi.
+- Adres 3  - Hedefin MAC adresi.
+- Sequence Control - Bu, sıralamayı ve parçalanmış çerçeveleri kontrol etmek için bilgi içerir.
+- Adres 4 - Bu, yalnızca ad hoc modda kullanıldığından genellikle eksiktir.
+- Payload - Bu, iletilecek verileri içerir.
+- FCS - Bu, Katman 2 hata kontrolü için kullanılır.
+
+## Kanal Yönetimi
+
+Direct-Sequence Spread Spectrum (DSSS), bir sinyali daha geniş bir frekans bandına yaymak için tasarlanmış bir modülasyon tekniğidir. DSSS, aynı 2,4 GHz frekansını kullanan diğer cihazlardan kaynaklanan paraziti önlemek için 802.11b cihazları tarafından kullanılır.
+
+Frequency-Hopping Spread Spectrum (FHSS), iletişim kurmak için yayılmış spektrum yöntemlerine dayanır. Birçok frekans kanalı arasında bir taşıyıcı sinyali hızla değiştirerek radyo sinyallerini iletir. Gönderici ve alıcı, kanal atlama sırası senkronize edilmelidir.Bu kanal atlama işlemi, kanalların daha verimli kullanılmasını sağlayarak kanal tıkanıklığını azaltır. Telsizler ve 900 MHz kablosuz telefonlar da FHSS kullanır ve Bluetooth, FHSS'nin bir varyasyonunu kullanır.
+
+Orthogonal Frequency-Division Multiplexing (OFDM), tek bir kanalın bitişik frekanslarda birden çok alt kanal kullandığı frekans bölmeli çoğullamannın kullanıldığı modülasyondur. OFDM, 802.11a/g/n/ac dahil olmak üzere bir dizi iletişim sistemi tarafından kullanılır. Yeni 802.11ax, Ortogonal frekans bölmeli çoklu erişim (OFDMA) adı verilen bir OFDM varyasyonu kullanır.
+
+### Kanal Seçimi
+
+Birden çok AP gerektiren WLAN'lar için en iyi uygulama, örtüşmeyen kanalları kullanmaktır. Örneğin, 802.11b/g/n standartları 2,4 GHz ila 2,5 GHz spektrumunda çalışır. 2.4 GHz bandı birden çok kanala bölünmüştür. Her kanala 22 MHz bant genişliği tahsis edilmiştir ve bir sonraki kanaldan 5 MHz ile ayrılmıştır.
+
+![image](https://user-images.githubusercontent.com/70758694/184164326-8d9c9da1-09ff-4567-abb8-9674ee6f3ae0.png)
+
+Yukarıdaki şekilde görüldüğü gibi aynı alanda birbirleriyle çakışmayacak aslında en fazla 3 kanal var. Aralarında en az 5 kanal olan iki kanal birbirleriyle çakışmaz ve birbirlerinin verisini bozmaz. Hızı arttırmak istersek çakışmayan iki kanlı birleştirebiliriz ama bu şekilde 2 kanalıda işgal ettiğimizi ve geriye 1 kanal kaldığını unutmayalım. 
+
+5 GHz ile birlikte kanal sayısı artmış ve bu şekilde örtüşemeyen kanallar birleştirerek daha yüksek hızlara çıkabiliriz. Ama kapsama alanı daha dardır. 
+
+## CSMA/CA 
+
+Frekansımız dar olduğu için her cihaza ayrı kanallar atayamıyoruz bu yüzden tüm cihazlar half-dublex bir şekilde kablosuz bağlantı sağlarlar. Çakışmaları engellemek için CSMA/CA algoritmasından yararlanılır. Paket gönderecek cihaz öncelikle ağı dinler ve AP cihazına RTS paketi gönderir. Bu paket veri içerimez, sadece AP cihazına veri göndermeye hazır olduğunu belirtir.  
+
+
+
+
+
+
+
+
+
+
+
 
