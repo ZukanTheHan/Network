@@ -104,12 +104,42 @@ Yukarıdaki şekilde görüldüğü gibi aynı alanda birbirleriyle çakışmaya
 
 ## CSMA/CA 
 
-Frekansımız dar olduğu için her cihaza ayrı kanallar atayamıyoruz bu yüzden tüm cihazlar half-dublex bir şekilde kablosuz bağlantı sağlarlar. Çakışmaları engellemek için CSMA/CA algoritmasından yararlanılır. Paket gönderecek cihaz öncelikle ağı dinler ve AP cihazına RTS paketi gönderir. Bu paket veri içerimez, sadece AP cihazına veri göndermeye hazır olduğunu belirtir.  
+Frekansımız dar olduğu için her cihaza ayrı kanallar atayamıyoruz bu yüzden tüm cihazlar half-dublex bir şekilde kablosuz bağlantı sağlarlar. Çakışmaları engellemek için CSMA/CA algoritmasından yararlanılır. Paket gönderecek cihaz öncelikle ağı dinler ve AP cihazına RTS paketi gönderir. Bu paket veri içerimez, sadece AP cihazına veri göndermeye hazır olduğunu belirtir. AP cihazı da o an herhangi bir transfer yoksa CTS paketiyle karşılık verir. Eğer client tarafında bulunan cihaz CTS mesajı almazsa rastgele bir süre bekler ve tekrar işlemi gerçekleştirir. CTS paketini alan client cihaz veri transferine başlar. Tüm transfer AP cihazı tarafından ACK paketiyle desteklenir. Eğer client cihaz ACK paketlerini almazsa bir çarpışma olduğunu anlar ve işlemi tekrar gerçekleştirir. RTS ve CTS mesajları özellikle hiding node problemlerini çözmek için kullanılır. RTS ve CTS kullanılmayan bir dizaynda birbirlerinin aktarımını görmeyen cihazlar AP cihazını boş zannedip veri transferine başlayabilir. RTS ve CTS ile buna önlem alınır.
 
+## Kablosuz İstemci ve AP Cihaz İlişkilendirmesi
 
+Kablosuz istemciler keşfettikleri AP cihazına bağlanabilmeleri için öncelikle kimlik denetimden geçmesi gerekir. Daha sonra ilişkilendirme yani cihazın AP istemcisi olma işlemi gerçekleştirilir. AP cihazları pasif veya aktif olarak bilgilerini kablosuz istemcilerle paylaşır. Pasif modda AP cihazı sürekli olarak beacon adı verilen frame yayınını gerçekleştirir. Bu frame yayınının içinde SSID, güvenlik standartları ve desteklenen standartlar bilgisi paylaşılır. Aktif moddaysa istemci cihazlar AP cihazının SSID adını bilmelidir. Kablosuz istemci, birden fazla kanalda bir probe frame yayınlayarak süreci başlatır. Probe frame, desteklenen SSID adını ve standartları içerir. SSID ile yapılandırılan AP'ler, SSID'yi, desteklenen standartları ve güvenlik ayarlarını içeren bir probe response gönderir.
 
+İstemci ve AP cihazı belli parametreler için anlaşmalıdır.
 
+- SSID - İstemci bağlanacağı ağın ismini bilmelidir.
+- Password - Kimlik doğrulma işlemi için gereklidir.
+- Network mode - Kullanılan 802.11 standart bilgisi.
+- Security mode - Güvenlik parameterleri hakkında bilgiler. WEP,WPA veya WPA2 güvenlik seçeneklerinden hangileirnin kullanıldığı.
+- Channel settings - Kullanılan kanalla ilgili bilgiler.
 
+## CAPWAP
+
+CAPWAP, bir WLC'nin birden çok AP'yi ve WLAN'ı yönetmesini sağlayan bir IEEE standart protokolüdür. CAPWAP, bir AP ile bir WLC arasında WLAN istemci trafiğinin kapsüllenmesinden ve iletilmesinden de sorumludur.
+
+CAPWAP, LWAPP'yi temel alır ancak Datagram Aktarım Katmanı Güvenliği (DTLS) ile ek güvenlik ekler. CAPWAP, UDP bağlantı noktaları üzerinde tüneller kurar. CAPWAP, IPv4 veya IPv6 üzerinden çalışabilir, ancak varsayılan olarak IPv4'ü kullanır.
+
+IPv4 ve IPv6, 5246 ve 5247 numaralı UDP portlarını kullanır. Port 5246, AP'yi yönetmek için WLC tarafından kullanılan CAPWAP kontrol mesajları içindir. Port 5247, kablosuz istemcilere gelen ve giden veri paketlerini kapsüllemek için CAPWAP tarafından kullanılır. Ancak, CAPWAP tünelleri, paket başlığında farklı IP protokolleri kullanır. IPv4, IP protokolü 17'yi ve IPv6, IP protokolü 136'yı kullanır. Layer 3 paketinde protokol bilgisi yer alır. 1 - ICMP olduğu gibi 17 ve 136 CAPWAP protokolüdür.  
+
+WLAN operasyonu AP ve WLC arasında bölünür. AP cihazları becon ve probe paket gönderimini sağlıyor, paket alımları ve iletilme durum bilgisi yönetimi, frame kuyruğa alma ve önceliklendirme ve MAC katmanı veri şifreleme ve şifre çözme işlemlerini gerçekleştirir. WLC ise, kimlik doğrulama, dolaşım istemcilerinin birleştirilmesi ve yeniden birleştirilmesi, diğer protokollere frame çevirisi ve kablolu bir arabirimde 802.11 trafiğinin sonlandırılması işlemlerini gerçekleştirir.
+
+DTLS, AP ve WLC arasında güvenlik sağlayan bir protokoldür. Şifreleme kullanarak iletişim kurmalarını sağlar ve gizlice dinlemeyi veya kurcalamayı önler.
+
+DTLS, CAPWAP kontrol kanalının güvenliğini sağlamak için varsayılan olarak etkindir, ancak veri kanalı için varsayılan olarak devre dışıdır. Bir AP ve WLC arasında değiş tokuş edilen tüm CAPWAP yönetimi ve kontrol trafiği, gizliliği sağlamak ve Ortadaki Adam (MITM) saldırılarını önlemek için varsayılan olarak şifrelenir ve güvence altına alınır.
+
+CAPWAP veri şifrelemesi isteğe bağlıdır ve AP başına etkinleştirilir. Veri şifreleme, bir AP'de etkinleştirilmeden önce WLC'ye kurulacak bir DTLS lisansı gerektirir. Etkinleştirildiğinde, tüm WLAN istemci trafiği, WLC'ye iletilmeden önce AP'de şifrelenir ve bunun tersi de geçerlidir.
+
+FlexConnect, şube ve uzak ofis dağıtımları için kablosuz bir çözümdür. Her ofise bir WLC dağıtmadan bir WAN bağlantısı aracılığıyla bir şube ofisindeki AP cihazlarını şirket ofisinden yapılandırmanıza ve kontrol etmenize olanak tanır.
+
+FlexConnect AP için iki çalışma modu vardır.
+
+Connected mode - Bu modda FlexConnect AP, WLC'si ile CAPWAP bağlantısına sahiptir ve CAPWAP tüneli üzerinden trafik gönderebilir. WLC, tüm CAPWAP işlevlerini yerine getirir.
+Standalone mode - FlexConnect, WLC'si ile CAPWAP bağlantısını kaybettiği veya kuramadığı zaman çalışan moddur. Bu modda, bir FlexConnect AP, istemci veri trafiğini yerel olarak anahtarlama ve istemci kimlik doğrulamasını yerel olarak gerçekleştirme gibi bazı WLC işlevlerini üstlenebilir.
 
 
 
