@@ -126,7 +126,7 @@ CAPWAP, LWAPP'yi temel alır ancak Datagram Aktarım Katmanı Güvenliği (DTLS)
 
 IPv4 ve IPv6, 5246 ve 5247 numaralı UDP portlarını kullanır. Port 5246, AP'yi yönetmek için WLC tarafından kullanılan CAPWAP kontrol mesajları içindir. Port 5247, kablosuz istemcilere gelen ve giden veri paketlerini kapsüllemek için CAPWAP tarafından kullanılır. Ancak, CAPWAP tünelleri, paket başlığında farklı IP protokolleri kullanır. IPv4, IP protokolü 17'yi ve IPv6, IP protokolü 136'yı kullanır. Layer 3 paketinde protokol bilgisi yer alır. 1 - ICMP olduğu gibi 17 ve 136 CAPWAP protokolüdür.  
 
-WLAN operasyonu AP ve WLC arasında bölünür. AP cihazları becon ve probe paket gönderimini sağlıyor, paket alımları ve iletilme durum bilgisi yönetimi, frame kuyruğa alma ve önceliklendirme ve MAC katmanı veri şifreleme ve şifre çözme işlemlerini gerçekleştirir. WLC ise, kimlik doğrulama, dolaşım istemcilerinin birleştirilmesi ve yeniden birleştirilmesi, diğer protokollere frame çevirisi ve kablolu bir arabirimde 802.11 trafiğinin sonlandırılması işlemlerini gerçekleştirir.
+WLAN operasyonu AP ve WLC arasında bölünür. AP cihazları becon ve probe paket gönderimini sağlıyor, paket alımları ve iletilme durum bilgisi yönetimi, frame kuyruğa alma ve önceliklendirme ve MAC katmanı veri şifreleme ve şifre çözme işlemlerini gerçekleştirir. WLC ise, kimlik doğrulama, diğer protokollere frame çevirisi ve kablolu bir arabirimde 802.11 trafiğinin sonlandırılması işlemlerini gerçekleştirir.
 
 DTLS, AP ve WLC arasında güvenlik sağlayan bir protokoldür. Şifreleme kullanarak iletişim kurmalarını sağlar ve gizlice dinlemeyi veya kurcalamayı önler.
 
